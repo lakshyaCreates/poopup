@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { SigninButton } from "../signin-button";
 import { SignoutButton } from "../signout-button";
+import { ThemeToggleButton } from "../theme-toggle-button";
 
 import { auth } from "@/auth";
 
@@ -13,7 +14,6 @@ export const Nav = async () => {
         <div className="flex items-center gap-x-4">
             {user ? (
                 <>
-                    <p className="font-bold text-foreground">{user.name}</p>
                     <ul className="flex items-center gap-x-4">
                         {appLinks.map((link, index) => {
                             const { text, href } = link;
@@ -28,6 +28,7 @@ export const Nav = async () => {
                             );
                         })}
                     </ul>
+                    <ThemeToggleButton />
                     <SignoutButton />
                 </>
             ) : (
@@ -78,7 +79,7 @@ const appLinks = [
         href: "/dashboard",
     },
     {
-        text: "Websites",
-        href: "/websites",
+        text: "Domains",
+        href: "/domains",
     },
 ];

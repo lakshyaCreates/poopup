@@ -1,5 +1,7 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+
 import db from "..";
 import { domains, settings } from "../schema";
 
@@ -25,6 +27,7 @@ export async function addDomain(url: string) {
             endAt: 150,
             domainId: response[0].id,
         });
+        revalidatePath("/domains", "layout");
     } catch (error) {
         console.log(error);
     }
