@@ -20,13 +20,13 @@ export default async function DomainPage({
         <Wrapper className="space-y-8 py-8">
             <div className="space-y-2">
                 <h3 className="flex items-center text-2xl font-semibold tracking-tight">
-                    <RxLink2 className="mr-2 size-6" />
+                    <RxLink2 className="mr-1.5 size-6 text-muted-foreground" />
                     {domain.url}
                 </h3>
                 <Separator />
             </div>
-            <div className="flex h-full w-full items-center justify-between">
-                <SettingsCard />
+            <div className="flex h-full w-full items-start justify-between">
+                <SettingsCard settings={settings} />
                 <PoopupCard />
             </div>
         </Wrapper>

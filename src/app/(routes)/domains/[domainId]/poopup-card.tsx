@@ -19,7 +19,7 @@ export const PoopupCard = () => {
                 </CardDescription>
             </CardHeader>
             <Separator />
-            <CardContent>
+            <CardContent className="pt-4">
                 <PoopupCardContent />
             </CardContent>
         </Card>

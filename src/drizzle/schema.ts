@@ -25,22 +25,22 @@ export const domains = pgTable("domains", {
     userId: text("userId")
         .notNull()
         .references(() => users.id, { onDelete: "cascade" }),
-    createdAt: timestamp("createdAt", { mode: "date" })
-        .notNull()
-        .default(sql`now()`),
+    createdAt: timestamp("createdAt", { mode: "date" }).notNull().defaultNow(),
 });
 
 export const settings = pgTable("settings", {
     id: text("id")
         .primaryKey()
         .$defaultFn(() => crypto.randomUUID()),
-    startAt: integer("startAt"),
-    hideAfter: integer("hideAfter"),
-    endAt: integer("endAt"),
+    startAt: integer("startAt").notNull(),
+    hideAfter: integer("hideAfter").notNull(),
+    endAt: integer("endAt").notNull(),
     domainId: text("domainId")
         .notNull()
         .references(() => domains.id, { onDelete: "cascade" }),
 });
+
+export type Settings = typeof settings.$inferSelect;
 
 export const poopups = pgTable("poopups", {
     id: text("id")
@@ -67,9 +67,7 @@ export const users = pgTable(
         image: text("image"),
     },
     (table) => ({
-        emailUniqueIndex: uniqueIndex("emailUniqueIndex").on(
-            lower(table.email),
-        ),
+        emailUniqueIndex: uniqueIndex("emailUniqueIndex").on(table.email),
     }),
 );
 
