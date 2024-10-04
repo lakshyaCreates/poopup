@@ -1,0 +1,1 @@
+ALTER TABLE "poopups" ADD COLUMN "order" integer DEFAULT 1;

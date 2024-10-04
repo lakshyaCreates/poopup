@@ -14,7 +14,7 @@ export default async function DomainPage({
     params: { domainId: string };
 }) {
     const domainId = params.domainId;
-    const { domain, settings } = await getDomain(domainId);
+    const { domain, settings, poopups } = await getDomain(domainId);
 
     return (
         <Wrapper className="space-y-8 py-8">
@@ -25,9 +25,9 @@ export default async function DomainPage({
                 </h3>
                 <Separator />
             </div>
-            <div className="flex h-full w-full items-start justify-between">
+            <div className="flex h-full w-full items-start justify-between gap-x-8">
                 <SettingsCard settings={settings} />
-                <PoopupCard />
+                <PoopupCard poopups={poopups} />
             </div>
         </Wrapper>
     );

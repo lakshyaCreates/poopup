@@ -1,6 +1,6 @@
 import db from "..";
 import { domains, poopups, settings } from "../schema";
-import { eq } from "drizzle-orm";
+import { asc, eq } from "drizzle-orm";
 
 export async function getDomain(domainId: string) {
     const response = await db
@@ -19,7 +19,8 @@ export async function getDomain(domainId: string) {
     const poopupsResponse = await db
         .select()
         .from(poopups)
-        .where(eq(poopups.domainId, domainId));
+        .where(eq(poopups.domainId, domainId))
+        .orderBy(asc(poopups.order));
 
     return { domain, settings: settingsResponse, poopups: poopupsResponse };
 }

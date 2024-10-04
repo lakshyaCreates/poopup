@@ -1,3 +1,5 @@
+import { Poopups } from "@/drizzle/schema";
+
 import {
     Card,
     CardContent,
@@ -9,9 +11,9 @@ import { Separator } from "@/components/ui/separator";
 
 import { PoopupCardContent } from "./poopup-card-content";
 
-export const PoopupCard = () => {
+export const PoopupCard = ({ poopups }: { poopups: Poopups[] }) => {
     return (
-        <Card className="w-1/2">
+        <Card className="w-full">
             <CardHeader>
                 <CardTitle>Poopups</CardTitle>
                 <CardDescription>
@@ -20,7 +22,7 @@ export const PoopupCard = () => {
             </CardHeader>
             <Separator />
             <CardContent className="pt-4">
-                <PoopupCardContent />
+                <PoopupCardContent poopups={poopups} />
             </CardContent>
         </Card>
     );

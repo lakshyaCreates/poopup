@@ -17,7 +17,7 @@ export const SettingsCard = ({ settings }: { settings: Settings }) => {
             <CardHeader>
                 <CardTitle>Settings</CardTitle>
                 <CardDescription>
-                    Configure the settings for your domain.
+                    Configure domain settings here.
                 </CardDescription>
             </CardHeader>
             <Separator />

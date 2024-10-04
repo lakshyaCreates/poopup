@@ -42,17 +42,27 @@ export const settings = pgTable("settings", {
 
 export type Settings = typeof settings.$inferSelect;
 
-export const poopups = pgTable("poopups", {
-    id: text("id")
-        .primaryKey()
-        .$defaultFn(() => crypto.randomUUID()),
-    title: text("title").notNull(),
-    description: text("description"),
-    imageUrl: text("imageUrl"),
-    domainId: text("domainId")
-        .notNull()
-        .references(() => domains.id, { onDelete: "cascade" }),
-});
+export const poopups = pgTable(
+    "poopups",
+    {
+        id: text("id")
+            .primaryKey()
+            .$defaultFn(() => crypto.randomUUID()),
+        title: text("title").notNull(),
+        description: text("description").notNull(),
+        time: text("time").notNull(),
+        order: integer("order").default(1),
+        imageUrl: text("imageUrl"),
+        domainId: text("domainId")
+            .notNull()
+            .references(() => domains.id, { onDelete: "cascade" }),
+    },
+    (table) => ({
+        orderIndex: uniqueIndex("orderIndex").on(table.domainId, table.order),
+    }),
+);
+
+export type Poopups = typeof poopups.$inferSelect;
 
 export const users = pgTable(
     "user",
